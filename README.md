@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 06 Server-Side APIs: Weather Dashboard
 
 ## Your Task
@@ -98,3 +99,6 @@ You are required to submit BOTH of the following for review:
 
 - - -
 © 2022 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
+=======
+# Weather-App
+>>>>>>> 47ae7a5b1e3cf5e4e5086bd7aea55e76529d01e8
