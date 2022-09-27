@@ -14,3 +14,6 @@ h1 {
     border-radius: 10px;
     margin: 20px;
 }
+#forecast {
+    text-align: center;
+}
