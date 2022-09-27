@@ -23,9 +23,6 @@ const dayTwoHumidity = document.getElementById('day-two-humidity');
 const dayThreeHumidity = document.getElementById('day-three-humidity');
 const dayFourHumidity = document.getElementById('day-four-humidity');
 
-// let apiKey = "f5f2f5a01947a3884ab3b3064c13c0e2"
-// let weatherUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityForm.value}&appid=f5f2f5a01947a3884ab3b3064c13c0e2&units=imperial`
-
 
 function weatherAPI() {
 fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityForm.value}&appid=f5f2f5a01947a3884ab3b3064c13c0e2&units=imperial`)
@@ -35,43 +32,99 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityForm.value}&appi
     .then(function (data) {
         console.log(data)
         citySpan.textContent = (data.city.name)
-        tempSpan.textContent = (`${data.list[6].main.temp} F`)
-        windSpan.textContent = (`${data.list[6].wind.speed} MPH`)
-        humiditySpan.textContent = (`${data.list[6].main.humidity}%`)
-        dateSpan.textContent = (moment.unix(data.list[6].dt).format('MMMM Do YYYY'))
+        tempSpan.textContent = (`${data.list[0].main.temp} F`)
+        document.getElementById('icon-one').src = `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`
+        windSpan.textContent = (`${data.list[0].wind.speed} MPH`)
+        humiditySpan.textContent = (`${data.list[0].main.humidity}%`)
+        dateSpan.textContent = (moment.unix(data.list[0].dt).format('MMMM Do YYYY'))
         
         
+        
+        
+        dayOneDate.textContent = (moment.unix(data.list[8].dt).format('MMMM Do, YYYY'))
+        dayTwoDate.textContent = (moment.unix(data.list[16].dt).format('MMMM Do, YYYY'))
+        dayThreeDate.textContent = (moment.unix(data.list[24].dt).format('MMMM Do, YYYY'))
+        dayFourDate.textContent = (moment.unix(data.list[32].dt).format('MMMM Do, YYYY'))
+        
+        dayOneTemp.textContent = (`Temp: ${data.list[8].main.temp} F`)
+        document.getElementById('icon-two').src = `http://openweathermap.org/img/wn/${data.list[8].weather[0].icon}.png`
+        dayTwoTemp.textContent = (`Temp: ${data.list[16].main.temp} F`)
+        document.getElementById('icon-three').src = `http://openweathermap.org/img/wn/${data.list[16].weather[0].icon}.png`
+        dayThreeTemp.textContent = (`Temp: ${data.list[24].main.temp} F`)
+        document.getElementById('icon-four').src = `http://openweathermap.org/img/wn/${data.list[24].weather[0].icon}.png`
+        dayFourTemp.textContent = (`Temp: ${data.list[32].main.temp} F`)
+        document.getElementById('icon-five').src = `http://openweathermap.org/img/wn/${data.list[32].weather[0].icon}.png`
+        
+        dayOneWind.textContent = (`Wind: ${data.list[8].wind.speed} MPH`)
+        dayTwoWind.textContent = (`Wind: ${data.list[16].wind.speed} MPH`)
+        dayThreeWind.textContent = (`Wind: ${data.list[24].wind.speed} MPH`)
+        dayFourWind.textContent = (`Wind: ${data.list[32].wind.speed} MPH`)
+
+        dayOneHumidity.textContent = (`Humidity: ${data.list[8].main.humidity}%`)
+        dayTwoHumidity.textContent = (`Humidity: ${data.list[16].main.humidity}%`)
+        dayThreeHumidity.textContent = (`Humidity: ${data.list[24].main.humidity}%`)
+        dayFourHumidity.textContent = (`Humidity: ${data.list[32].main.humidity}%`)
+
+
+
+
         const searchedList = document.createElement('button')
         searchedList.textContent = (`${cityForm.value}`)
-        searchedList.setAttribute = ('data-id', cityForm.value)
-        const listItem = searchedList.getAttribute('data-id')
+        localStorage.setItem('searched', cityForm.value)
         searchedEl.appendChild(searchedList)
+    
+        searchedList.addEventListener('click', function (event) {
+            event.preventDefault()
+            
+            const btnSearch = searchedList.textContent
+
+            fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${btnSearch}&appid=f5f2f5a01947a3884ab3b3064c13c0e2&units=imperial`)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data)
+                citySpan.textContent = (data.city.name)
+                tempSpan.textContent = (`${data.list[0].main.temp} F`)
+                windSpan.textContent = (`${data.list[0].wind.speed} MPH`)
+                humiditySpan.textContent = (`${data.list[0].main.humidity}%`)
+                dateSpan.textContent = (moment.unix(data.list[0].dt).format('MMMM Do YYYY'))
+                
+                
+                
+                
+                dayOneDate.textContent = (moment.unix(data.list[8].dt).format('MMMM Do, YYYY'))
+                dayTwoDate.textContent = (moment.unix(data.list[16].dt).format('MMMM Do, YYYY'))
+                dayThreeDate.textContent = (moment.unix(data.list[24].dt).format('MMMM Do, YYYY'))
+                dayFourDate.textContent = (moment.unix(data.list[32].dt).format('MMMM Do, YYYY'))
+                
+                dayOneTemp.textContent = (`Temp: ${data.list[8].main.temp} F`)
+                document.getElementById('icon-two').src = `http://openweathermap.org/img/wn/${data.list[8].weather[0].icon}.png`
+                dayTwoTemp.textContent = (`Temp: ${data.list[16].main.temp} F`)
+                document.getElementById('icon-three').src = `http://openweathermap.org/img/wn/${data.list[16].weather[0].icon}.png`
+                dayThreeTemp.textContent = (`Temp: ${data.list[24].main.temp} F`)
+                document.getElementById('icon-four').src = `http://openweathermap.org/img/wn/${data.list[24].weather[0].icon}.png`
+                dayFourTemp.textContent = (`Temp: ${data.list[32].main.temp} F`)
+                document.getElementById('icon-five').src = `http://openweathermap.org/img/wn/${data.list[32].weather[0].icon}.png`
+                
+                dayOneWind.textContent = (`Wind: ${data.list[8].wind.speed} MPH`)
+                dayTwoWind.textContent = (`Wind: ${data.list[16].wind.speed} MPH`)
+                dayThreeWind.textContent = (`Wind: ${data.list[24].wind.speed} MPH`)
+                dayFourWind.textContent = (`Wind: ${data.list[32].wind.speed} MPH`)
         
-        searchedList.addEventListener('click', function () {
+                dayOneHumidity.textContent = (`Humidity: ${data.list[8].main.humidity}%`)
+                dayTwoHumidity.textContent = (`Humidity: ${data.list[16].main.humidity}%`)
+                dayThreeHumidity.textContent = (`Humidity: ${data.list[24].main.humidity}%`)
+                dayFourHumidity.textContent = (`Humidity: ${data.list[32].main.humidity}%`)
+
+
+            console.log(btnSearch)
+            })
         })
-
-        dayOneDate.textContent = (moment.unix(data.list[14].dt).format('MMMM Do, YYYY'))
-        dayTwoDate.textContent = (moment.unix(data.list[22].dt).format('MMMM Do, YYYY'))
-        dayThreeDate.textContent = (moment.unix(data.list[30].dt).format('MMMM Do, YYYY'))
-        dayFourDate.textContent = (moment.unix(data.list[38].dt).format('MMMM Do, YYYY'))
-        
-        dayOneTemp.textContent = (`Temp: ${data.list[14].main.temp} F`)
-        dayTwoTemp.textContent = (`Temp: ${data.list[22].main.temp} F`)
-        dayThreeTemp.textContent = (`Temp: ${data.list[30].main.temp} F`)
-        dayFourTemp.textContent = (`Temp: ${data.list[38].main.temp} F`)
-
-        dayOneWind.textContent = (`Wind: ${data.list[14].wind.speed} MPH`)
-        dayTwoWind.textContent = (`Wind: ${data.list[22].wind.speed} MPH`)
-        dayThreeWind.textContent = (`Wind: ${data.list[30].wind.speed} MPH`)
-        dayFourWind.textContent = (`Wind: ${data.list[38].wind.speed} MPH`)
-
-        dayOneHumidity.textContent = (`Humidity: ${data.list[14].main.humidity}%`)
-        dayTwoHumidity.textContent = (`Humidity: ${data.list[22].main.humidity}%`)
-        dayThreeHumidity.textContent = (`Humidity: ${data.list[30].main.humidity}%`)
-        dayFourHumidity.textContent = (`Humidity: ${data.list[38].main.humidity}%`)
     })
 }
     search.addEventListener('click', function () {
         console.log(cityForm.value)
         weatherAPI()
-    })
+    })        
+    
