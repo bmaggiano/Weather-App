@@ -25,9 +25,10 @@ const dayThreeHumidity = document.getElementById('day-three-humidity');
 const dayFourHumidity = document.getElementById('day-four-humidity');
 const searchArr = []
 
+
 //Weather api will wait until clicked to run
 function weatherAPI() {
-fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityForm.value}&appid=f5f2f5a01947a3884ab3b3064c13c0e2&units=imperial`)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityForm.value}&appid=f5f2f5a01947a3884ab3b3064c13c0e2&units=imperial`)
     .then(function (response) {
         return response.json();
     })
@@ -67,7 +68,7 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityForm.value}&appi
         dayTwoHumidity.textContent = (`Humidity: ${data.list[16].main.humidity}%`)
         dayThreeHumidity.textContent = (`Humidity: ${data.list[24].main.humidity}%`)
         dayFourHumidity.textContent = (`Humidity: ${data.list[32].main.humidity}%`)
-
+        
         //Once API is called, we are going to create a button element and append out index
         //UL, and set the value in local storage
         const searchedList = document.createElement('button')
@@ -75,7 +76,7 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityForm.value}&appi
         searchArr.push(cityForm.value)
         localStorage.setItem('searches', JSON.stringify(searchArr))
         searchedEl.appendChild(searchedList)
-        console.log(searchArr)
+        // console.log(searchArr)
 
         //Once a user clicks on the button for the previous cities clicked, the function will
         //look for the text inside the button element and will be placed inside the appropriate 
@@ -84,7 +85,7 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityForm.value}&appi
             event.preventDefault()
             
             const btnSearch = searchedList.textContent
-
+            
             fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${btnSearch}&appid=f5f2f5a01947a3884ab3b3064c13c0e2&units=imperial`)
             .then(function (response) {
                 return response.json();
