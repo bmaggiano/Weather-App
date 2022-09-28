@@ -23,6 +23,7 @@ const dayOneHumidity = document.getElementById('day-one-humidity');
 const dayTwoHumidity = document.getElementById('day-two-humidity');
 const dayThreeHumidity = document.getElementById('day-three-humidity');
 const dayFourHumidity = document.getElementById('day-four-humidity');
+const searchArr = []
 
 //Weather api will wait until clicked to run
 function weatherAPI() {
@@ -71,7 +72,6 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityForm.value}&appi
         //UL, and set the value in local storage
         const searchedList = document.createElement('button')
         searchedList.textContent = (`${cityForm.value}`)
-        const searchArr = []
         searchArr.push(cityForm.value)
         localStorage.setItem('searches', JSON.stringify(searchArr))
         searchedEl.appendChild(searchedList)
