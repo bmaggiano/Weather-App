@@ -10,6 +10,8 @@ This app is very user friendly, and is something I intend to share with family a
 
 ## Link to deployed URL
 
+https://bmaggiano.github.io/Weather-App/
+
 ## Screenshots
 
 ![image](https://user-images.githubusercontent.com/103971233/192665363-231d44e0-e4d9-482d-95d2-9acc96f0623b.png)
