@@ -12,6 +12,12 @@ This app is very user friendly, and is something I intend to share with family a
 
 ## Screenshots
 
+![image](https://user-images.githubusercontent.com/103971233/192665363-231d44e0-e4d9-482d-95d2-9acc96f0623b.png)
+
+![image](https://user-images.githubusercontent.com/103971233/192665398-9641050c-6ae9-4ef6-a6e4-f20c140a4267.png)
+
+![image](https://user-images.githubusercontent.com/103971233/192665456-97581792-8603-4036-99bf-f7bcae9cee79.png)
+
 ## Credits
 
 Using Bootstrap for UI. Moment.js for time conversions and formatting. Using Openweathermapapi for our data.
